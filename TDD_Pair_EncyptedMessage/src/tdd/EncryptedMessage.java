@@ -18,7 +18,7 @@ public class EncryptedMessage {
 	 */
 	public EncryptedMessage(String message, String key) {
 		// TODO Auto-generated constructor stub
-		
+		encryptMessage(message, key);
 	}
 	
 	public EncryptedMessage(String encryptedMessage) {
@@ -88,5 +88,6 @@ public class EncryptedMessage {
 	  for (char c : messageChars) {
 	    mEncryptedMessage += c;
 	  }
+
 	}
 }
