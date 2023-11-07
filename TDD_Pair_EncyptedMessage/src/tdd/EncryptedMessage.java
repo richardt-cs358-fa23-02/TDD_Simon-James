@@ -28,16 +28,16 @@ public class EncryptedMessage {
 	public EncryptedMessage(String encryptedMessage) {
 		// TODO Auto-generated constructor stub
 	  
-	  mEncryptedMessage = "";
-	  for (int i = 0; i < encryptedMessage.length(); i++) {
-	    if (encryptedMessage.charAt(i) >= 'A' && encryptedMessage.charAt(i) <= 'Z') {
-	      mEncryptedMessage += encryptedMessage.charAt(i);
-	    }
-	  }
+	  mEncryptedMessage = encryptedMessage.toUpperCase();
+//	  for (int i = 0; i < encryptedMessage.length(); i++) {
+//	    if (encryptedMessage.charAt(i) >= 'A' && encryptedMessage.charAt(i) <= 'Z') {
+//	      mEncryptedMessage += encryptedMessage.charAt(i);
+//	    }
+//	  }
 	}
 	
 	public String getMessage() throws Exception {
-		if(mEncryptedMessage == null || mEncryptedMessage == "") {
+		if(!validate(mEncryptedMessage)) {
 		  throw new Exception("Unauthorized use.");
 		}else {
 		  return mEncryptedMessage;
