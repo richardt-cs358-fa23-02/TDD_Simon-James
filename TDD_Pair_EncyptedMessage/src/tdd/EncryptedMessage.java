@@ -27,7 +27,13 @@ public class EncryptedMessage {
 	
 	public EncryptedMessage(String encryptedMessage) {
 		// TODO Auto-generated constructor stub
-	 encryptedMessage.toUpperCase();
+	  
+	  mEncryptedMessage = "";
+	  for (int i = 0; i < encryptedMessage.length(); i++) {
+	    if (encryptedMessage.charAt(i) >= 'A' && encryptedMessage.charAt(i) <= 'Z') {
+	      mEncryptedMessage += encryptedMessage.charAt(i);
+	    }
+	  }
 	}
 	
 	public String getMessage() throws Exception {
@@ -47,9 +53,8 @@ public class EncryptedMessage {
 		boolean valid = false;
 		int invalid = 0;
 		if(data != null && data.length() != 0) {
-		  data.toUpperCase();
   	  for(int i = 0;i < data.length();i++) {
-  		  if(data.charAt(i) < 'A' || data.charAt(i) > 'Z') {
+  		  if(data.charAt(i) < 'A' || data.charAt(i) > 'z') {
   		    invalid++;
   		  }
   		}
