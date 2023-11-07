@@ -16,12 +16,12 @@ public class EncryptedMessage {
 	 * @throws Exception 
 	 * 
 	 */
-	public EncryptedMessage(String message, String key) {
+	public EncryptedMessage(String message, String key) throws Exception{
 		// TODO Auto-generated constructor stub
 	     if(validate(message) && validate(key)) {
 		    encryptMessage(message, key);
 	     } else {
-	       throw new Exception("Unauthorized use.")
+	       throw new Exception("Unauthorized use.");
 	     }
 	}
 	
@@ -42,8 +42,9 @@ public class EncryptedMessage {
 	private Boolean validate(String data) {
 		boolean valid = false;
 		int invalid = 0;
-	  for(char c: data) {
-		  if(c < 'A' || c > 'Z') {
+		data.toUpperCase();
+	  for(int i = 0;i < data.length();i++) {
+		  if(data.charAt(i) < 'A' || data.charAt(i) > 'Z') {
 		    invalid++;
 		  }
 		}
@@ -69,13 +70,13 @@ public class EncryptedMessage {
 	    ArrayList<Character> keyChars = new ArrayList<Character>();
 	    
 	    //fill messageChars from message
-	    for (char c : message) {
-	      messageChars.add(c);
+	    for (int i = 0; i < message.length();i++) {
+	      messageChars.add(message.charAt(i));
 	    }
 	    
 	    //fill keyChars from key
-	    for (char c : key) {
-	      keyChars.add(c);
+	    for (int i = 0;i < key.length(); i++)) {
+	      keyChars.add(key.charAt(i));
 	    }
 	    
 	    //extend key to match message length if shorter than message
@@ -91,7 +92,7 @@ public class EncryptedMessage {
 	    for (int i = 0; i < messageChars.size(); i++) {
 	      //update each letter in the message by adding the ascii value of char from letter in message plus difference of letter from key minus 65 (A)
 	     
-	      messageChars.set(i, (messageChar.get(i) + keyChars.get(i) - 'A') );
+	      messageChars.set(i, (char)(messageChars.get(i) + keyChars.get(i) - 'A') );
 	      System.out.print(messageChars.get(i));
 	    }
 	    
