@@ -11,20 +11,23 @@ import java.util.ArrayList;
  */
 public class EncryptedMessage {
 
-	private String mEncryptedMessage = "";
+	private String mEncryptedMessage;
 	/**
 	 * @throws Exception 
 	 * 
 	 */
 	public EncryptedMessage(String message, String key){
 		// TODO Auto-generated constructor stub
-	     if(validate(message) && validate(key)) {
+	     if(validate(key)) {
 		    encryptMessage(message, key);
+	     }else {
+	       mEncryptedMessage = null;
 	     }
 	}
 	
 	public EncryptedMessage(String encryptedMessage) {
 		// TODO Auto-generated constructor stub
+	  mEncryptedMessage = encryptedMessage.toUpperCase();
 	}
 	
 	public String getMessage() throws Exception {
@@ -65,7 +68,8 @@ public class EncryptedMessage {
 	 */
 	private void encryptMessage(String message, String key)  {
 		//set to upper (case is lost)
-	  if (message != null) {	    
+	  mEncryptedMessage = "";
+	  if(message != null) {
 	    message = message.toUpperCase();
 	    key = key.toUpperCase();
 	    //break message and key into arraylists of characters
@@ -74,19 +78,30 @@ public class EncryptedMessage {
 	    
 	    //fill messageChars from message
 	    for (int i = 0; i < message.length();i++) {
-	     messageChars.add(message.charAt(i));
+	      //skip nonalpabetic characters
+	      if(message.charAt(i) >= 'A' && message.charAt(i) <= 'Z') {
+	        messageChars.add(message.charAt(i));
+	      }
 	    }
 	    
 	    //fill keyChars from key
 	    for (int i = 0;i < key.length(); i++) {
+	      //skip nonalphabetic characters
+	      if(key.charAt(i) >= 'A' && key.charAt(i) <= 'Z') {
 	      keyChars.add(key.charAt(i));
+	      }
 	    }
 	    
 	    //loop through the key and message one by one
 	    for (int i = 0; i < messageChars.size(); i++) {
 	      //update each letter in the message by adding the ascii value of char from letter in message plus difference of letter from key minus 65 (A)
 	     
-	      messageChars.set(i, (char)((messageChars.get(i) + keyChars.get(i%keyChars.size()) - 'A')) );
+	     
+	      messageChars.set(i, (char)((messageChars.get(i) + (keyChars.get(i%keyChars.size()) - 'A'))) );
+	     //rollover
+	      if(messageChars.get(i) > 'Z') {
+	        messageChars.set(i, (char)(messageChars.get(i)-26));
+	      }
 	    }
 	    
 	    //condense encrypted message to string and return
