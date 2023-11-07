@@ -267,7 +267,6 @@ class EncryptedMessageTest {
 		
 		// test getMessage
 		try {
-		  System.out.print(encryptedMsg.getMessage());
 			assertEquals("BCF", encryptedMsg.getMessage());
 		} catch (Exception e) {
 			fail("Unexpected exception.");
@@ -516,7 +515,7 @@ class EncryptedMessageTest {
 		String msg = "    ";
 		String key = "B";
 		EncryptedMessage encryptedMsg = new EncryptedMessage(msg);
-
+		
 		// test getMessage
 		Throwable exception = assertThrows(Exception.class, () -> encryptedMsg.getMessage());
 		assertEquals("Unauthorized use.", exception.getMessage());

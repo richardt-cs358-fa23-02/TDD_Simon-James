@@ -27,7 +27,9 @@ public class EncryptedMessage {
 	
 	public EncryptedMessage(String encryptedMessage) {
 		// TODO Auto-generated constructor stub
-	  mEncryptedMessage = encryptedMessage.toUpperCase();
+	 encryptedMessage.toUpperCase();
+	 
+	 
 	}
 	
 	public String getMessage() throws Exception {
@@ -68,8 +70,8 @@ public class EncryptedMessage {
 	 */
 	private void encryptMessage(String message, String key)  {
 		//set to upper (case is lost)
-	  mEncryptedMessage = "";
 	  if(message != null) {
+	    mEncryptedMessage = "";
 	    message = message.toUpperCase();
 	    key = key.toUpperCase();
 	    //break message and key into arraylists of characters
