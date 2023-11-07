@@ -1,4 +1,4 @@
-/**
+/*
  * 
  */
 package tdd;
@@ -16,12 +16,12 @@ public class EncryptedMessage {
 	 * @throws Exception 
 	 * 
 	 */
-	public EncryptedMessage(String message, String key) throws Exception{
+	public EncryptedMessage(String message, String key){
 		// TODO Auto-generated constructor stub
 	     if(validate(message) && validate(key)) {
 		    encryptMessage(message, key);
 	     } else {
-	       throw new Exception("Unauthorized use.");
+	      // throw new Exception("Unauthorized use.");
 	     }
 	}
 	
