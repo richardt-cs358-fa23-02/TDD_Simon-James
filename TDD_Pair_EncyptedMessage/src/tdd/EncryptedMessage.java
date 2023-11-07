@@ -28,8 +28,6 @@ public class EncryptedMessage {
 	public EncryptedMessage(String encryptedMessage) {
 		// TODO Auto-generated constructor stub
 	 encryptedMessage.toUpperCase();
-	 
-	 
 	}
 	
 	public String getMessage() throws Exception {
