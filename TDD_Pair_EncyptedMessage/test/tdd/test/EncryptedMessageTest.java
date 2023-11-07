@@ -264,6 +264,7 @@ class EncryptedMessageTest {
 
 		EncryptedMessage encryptedMsg = new EncryptedMessage(msg, key);
 
+		
 		// test getMessage
 		try {
 			assertEquals("BCF", encryptedMsg.getMessage());
@@ -583,6 +584,7 @@ class EncryptedMessageTest {
 
 		// test getMessage
 		try {
+		  System.out.print(encryptedMsg.getMessage());
 			assertEquals("ZABZAB", encryptedMsg.getMessage());
 		} catch (Exception e) {
 			fail("Unexpected exception.");

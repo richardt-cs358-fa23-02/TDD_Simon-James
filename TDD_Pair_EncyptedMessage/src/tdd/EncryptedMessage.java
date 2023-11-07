@@ -20,8 +20,6 @@ public class EncryptedMessage {
 		// TODO Auto-generated constructor stub
 	     if(validate(message) && validate(key)) {
 		    encryptMessage(message, key);
-	     } else {
-	      // throw new Exception("Unauthorized use.");
 	     }
 	}
 	
@@ -30,8 +28,11 @@ public class EncryptedMessage {
 	}
 	
 	public String getMessage() throws Exception {
-		//throw new Exception("Unauthorized use.");
-		return mEncryptedMessage;
+		if(mEncryptedMessage == null || mEncryptedMessage == "") {
+		  throw new Exception("Unauthorized use.");
+		}else {
+		  return mEncryptedMessage;
+		}
 	};
 	
 	public String decryptMessage(String key) throws Exception {
@@ -42,14 +43,16 @@ public class EncryptedMessage {
 	private Boolean validate(String data) {
 		boolean valid = false;
 		int invalid = 0;
-		data.toUpperCase();
-	  for(int i = 0;i < data.length();i++) {
-		  if(data.charAt(i) < 'A' || data.charAt(i) > 'Z') {
-		    invalid++;
-		  }
-		}
-	  if(invalid == 0) {
-	    valid = true;
+		if(data != null && data.length() != 0) {
+		  data.toUpperCase();
+  	  for(int i = 0;i < data.length();i++) {
+  		  if(data.charAt(i) < 'A' || data.charAt(i) > 'Z') {
+  		    invalid++;
+  		  }
+  		}
+  	  if(invalid == 0) {
+  	    valid = true;
+  	  }	
 	  }
 	  return valid;
 	}
@@ -71,7 +74,7 @@ public class EncryptedMessage {
 	    
 	    //fill messageChars from message
 	    for (int i = 0; i < message.length();i++) {
-	      messageChars.add(message.charAt(i));
+	     messageChars.add(message.charAt(i));
 	    }
 	    
 	    //fill keyChars from key
@@ -79,21 +82,11 @@ public class EncryptedMessage {
 	      keyChars.add(key.charAt(i));
 	    }
 	    
-	    //extend key to match message length if shorter than message
-	    if (messageChars.size() > keyChars.size()) {
-	      int i = 0;
-	      while (messageChars.size() - keyChars.size() > 0) {
-	        keyChars.add(keyChars.get(i));
-	        i++;
-	      }
-	    }
-	    
 	    //loop through the key and message one by one
 	    for (int i = 0; i < messageChars.size(); i++) {
 	      //update each letter in the message by adding the ascii value of char from letter in message plus difference of letter from key minus 65 (A)
 	     
-	      messageChars.set(i, (char)(messageChars.get(i) + keyChars.get(i) - 'A') );
-	      System.out.print(messageChars.get(i));
+	      messageChars.set(i, (char)((messageChars.get(i) + keyChars.get(i%keyChars.size()) - 'A')) );
 	    }
 	    
 	    //condense encrypted message to string and return
