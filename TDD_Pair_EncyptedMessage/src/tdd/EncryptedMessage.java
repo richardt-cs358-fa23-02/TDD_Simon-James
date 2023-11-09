@@ -44,6 +44,7 @@ public class EncryptedMessage {
 		if(!validate(key) || !validate(mEncryptedMessage)) {
 		  throw new Exception("Unauthorized use.");
 		}
+		key = key.toUpperCase();
 		//string to hold the decrypted message
 		String decryptedMessage = "";
 	//break message and key into arraylists of characters
