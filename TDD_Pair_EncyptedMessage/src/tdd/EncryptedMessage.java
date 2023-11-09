@@ -6,7 +6,7 @@ package tdd;
 import java.util.ArrayList;
 
 /**
- * @author TBD
+ * @author Simon and James
  *
  */
 public class EncryptedMessage {
@@ -29,11 +29,7 @@ public class EncryptedMessage {
 		// TODO Auto-generated constructor stub
 	  
 	  mEncryptedMessage = encryptedMessage.toUpperCase();
-//	  for (int i = 0; i < encryptedMessage.length(); i++) {
-//	    if (encryptedMessage.charAt(i) >= 'A' && encryptedMessage.charAt(i) <= 'Z') {
-//	      mEncryptedMessage += encryptedMessage.charAt(i);
-//	    }
-//	  }
+
 	}
 	
 	public String getMessage() throws Exception {
