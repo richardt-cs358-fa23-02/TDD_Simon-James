@@ -41,7 +41,9 @@ public class EncryptedMessage {
 	};
 	
 	public String decryptMessage(String key) throws Exception {
-		//throw new Exception("Unauthorized use.");
+		if(!validate(key)) {
+		  throw new Exception("Unauthorized use.");
+		}
 		return "";
 	}
 	
@@ -105,7 +107,7 @@ public class EncryptedMessage {
 	      }
 	    }
 	    
-	    //condense encrypted message to string and return
+	    //condense and save encrypted message to string
 	    for (char c : messageChars) {
 	      mEncryptedMessage += c;
 	    }
