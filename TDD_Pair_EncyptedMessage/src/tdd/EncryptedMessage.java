@@ -41,7 +41,7 @@ public class EncryptedMessage {
 	};
 	
 	public String decryptMessage(String key) throws Exception {
-		if(!validate(key)) {
+		if(!validate(key) || !validate(mEncryptedMessage)) {
 		  throw new Exception("Unauthorized use.");
 		}
 		return "";
