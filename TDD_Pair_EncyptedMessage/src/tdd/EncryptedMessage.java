@@ -44,7 +44,45 @@ public class EncryptedMessage {
 		if(!validate(key) || !validate(mEncryptedMessage)) {
 		  throw new Exception("Unauthorized use.");
 		}
-		return "";
+		//string to hold the decrypted message
+		String decryptedMessage = "";
+	//break message and key into arraylists of characters
+    ArrayList<Character> messageChars = new ArrayList<Character>();
+    ArrayList<Character> keyChars = new ArrayList<Character>();
+    
+    //fill messageChars from mEncryptedMessage
+    for (int i = 0; i < mEncryptedMessage.length();i++) {
+      //skip nonalpabetic characters
+      if(mEncryptedMessage.charAt(i) >= 'A' && mEncryptedMessage.charAt(i) <= 'Z') {
+        messageChars.add(mEncryptedMessage.charAt(i));
+      }
+    }
+    
+    //fill keyChars from key
+    for (int i = 0;i < key.length(); i++) {
+      //skip nonalphabetic characters
+      if(key.charAt(i) >= 'A' && key.charAt(i) <= 'Z') {
+      keyChars.add(key.charAt(i));
+      }
+    }
+    //loop through the key and message one by one
+    for (int i = 0; i < messageChars.size(); i++) {
+      //update each letter in the message by adding the ascii value of char from letter in message plus difference of letter from key minus 65 (A)
+     
+     
+      messageChars.set(i, (char)((messageChars.get(i) - (keyChars.get(i%keyChars.size()) - 'A'))) );
+     //rollover
+      if(messageChars.get(i) < 'A') {
+        messageChars.set(i, (char)(messageChars.get(i)+26));
+      }
+    }
+    
+    //condense and save encrypted message to string
+    for (char c : messageChars) {
+      decryptedMessage += c;
+    }
+    //return the message decrypted
+		return decryptedMessage;
 	}
 	
 	private Boolean validate(String data) {
